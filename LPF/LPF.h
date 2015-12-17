@@ -6,8 +6,8 @@ class LPF{
     public:
         int run();
         LPF();
-        Convolution convo;
     private:
+        Convolution convo;
         float kernel;
 };
 #endif
