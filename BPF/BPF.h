@@ -6,8 +6,9 @@ class BPF{
     public:
         int run();
         BPF();
+        static float kernel[1281];
     private:
         Convolution convo;
-        float kernel;
+
 };
 #endif

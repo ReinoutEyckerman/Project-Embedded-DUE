@@ -3,7 +3,7 @@
 #include <Arduino.h>
 class Convolution{
     public:
-        void attach(float *kernel);
+        void attach(float kernel[1281]);
         int run();
         float block[1281];
     private:

@@ -6,8 +6,8 @@ class HPF{
     public:
         int run();
         HPF();
+        static float kernel[1281];
     private:
-        float kernel;
         Convolution convo;
 };
 #endif
