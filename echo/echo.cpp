@@ -21,29 +21,24 @@
  *
  */
 #include "echo.h"
-#include "Convolution.h"
+
 /*
  * Verzwakt of versterkt de sample en steekt deze in de echo array.
  */
-float Echo::pushSample(int sample){
-    float value = sample * AMP;
+void Echo::pushSample(int sample){
+    float value = sample * ECHO_AMP;
+    _echo[_index] = value;
 
-    // 'index' bevat de echo van ECHO_DELAY sec geleden,
-    // dus index - 1 is de plaats voor de recentste.
-    if(index == 0)
-        _echo[ECHO_SIZE - 1] = value;
-    else _echo[_index - 1] = value;
-    return value;
+    // Stap 1 sample verder zodat '_index' naar de echo verwijst.
+    if(_index == (ECHO_SIZE - 1) ){
+      _index = 0;
+    }
+    else _index++;
 }
 
 /*
  * Krijg de echo van ECHO_DELAY seconden geleden.
  */
-void Echo::emitEcho(){
-    float value = _echo[_index];
-
-    _index++;
-    if(_index == ECHO_SIZE)
-        _index = 0;
-    analogWrite(DAC0, value );
+void Echo::emit(){
+    analogWrite(DAC0, _echo[_index]);
 }
