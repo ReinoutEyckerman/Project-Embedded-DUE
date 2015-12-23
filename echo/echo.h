@@ -24,21 +24,29 @@
 #ifndef Echo_h
 #define Echo_h
 
+#ifndef SAMPLERATE
 #define SAMPLERATE 16000
+#endif
+
+#ifndef ECHO_DELAY
 #define ECHO_DELAY 0.5
+#endif
+
+#ifndef ECHO_AMP
+#define ECHO_AMP 0.5
+#endif
 
 #define ECHO_SIZE (int) ( SAMPLERATE * ECHO_DELAY )
 
 #include "Arduino.h"
 class Echo{
   public:
-    float pushSample(int sample);
-    void emitEcho();
+    void pushSample(int sample);
+    void emit();
   private:
   // = {0} sets the first and all undefined elements to 0.
     float _echo[ECHO_SIZE] = {0};
     int _index = 0;
-    float _amp;
 };
 
 
